@@ -100,8 +100,8 @@ void PointCloudViewer::reset()
 
     resetRequested=false;
 
-    // ASROS
-    save_folder = "save/";//ros::package::getPath("lsd_slam_viewer")+"/save/";
+	// ASROS - marcel
+    save_folder = "save/";    //ros::package::getPath("lsd_slam_viewer")+"/save/";
     localMsBetweenSaves = 1;
     simMsBetweenSaves = 1;
     lastCamID = -1;

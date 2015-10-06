@@ -73,17 +73,13 @@ namespace lsd_slam
 #define FAIL_VAR_INC_FAC 1.1f // after a failed stereo observation, the variance is increased by this factor.
 #define MAX_VAR (0.5f*0.5f) // initial variance on creation - if variance becomes larter than this, hypothesis is removed.
 
-#define VAR_GT_INIT_INITIAL 0.01f*0.01f	// initial variance vor Ground Truth Initialization
-#define VAR_RANDOM_INIT_INITIAL (0.5f*MAX_VAR)	// initial variance vor Random Initialization
-
-
-
+#define VAR_GT_INIT_INITIAL 0.01f*0.01f	// initial variance for Ground Truth Initialization
+#define VAR_RANDOM_INIT_INITIAL (0.5f*MAX_VAR)	// initial variance for Random Initialization
 
 
 // Whether to use the gradients of source and target frame for tracking,
 // or only the target frame gradient
 #define USE_ESM_TRACKING 1
-
 
 #ifdef ANDROID
 	// tracking pyramid levels.

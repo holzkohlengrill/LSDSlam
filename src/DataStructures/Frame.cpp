@@ -25,12 +25,7 @@
 
 namespace lsd_slam
 {
-
 int privateFrameAllocCount = 0;
-
-
-
-
 
 Frame::Frame(int id, int width, int height, const Eigen::Matrix3f& K, double timestamp, const unsigned char* image)
 {

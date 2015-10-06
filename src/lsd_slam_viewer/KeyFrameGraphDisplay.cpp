@@ -24,7 +24,6 @@
 #include "viewerSettings.h"
 #include <sstream>
 #include <fstream>
-
 //#include "ros/package.h"
 
 KeyFrameGraphDisplay::KeyFrameGraphDisplay()
@@ -59,39 +58,77 @@ void KeyFrameGraphDisplay::draw()
 
     if(flushPointcloud)
     {
-        // ASROS
-        /*
-        printf("Flushing Pointcloud to %s!\n", (ros::package::getPath("lsd_slam_viewer")+"/pc_tmp.ply").c_str());
-        std::ofstream f((ros::package::getPath("lsd_slam_viewer")+"/pc_tmp.ply").c_str());
-        int numpts = 0;
-        for(unsigned int i=0;i<keyframes.size();i++)
-        {
-            if((int)i > cutFirstNKf)
-                numpts += keyframes[i]->flushPC(&f);
-        }
-        f.flush();
-        f.close();
+//        // ASROS
 
-        std::ofstream f2((ros::package::getPath("lsd_slam_viewer")+"/pc.ply").c_str());
-        f2 << std::string("ply\n");
-        f2 << std::string("format binary_little_endian 1.0\n");
-        f2 << std::string("element vertex ") << numpts << std::string("\n");
-        f2 << std::string("property float x\n");
-        f2 << std::string("property float y\n");
-        f2 << std::string("property float z\n");
-        f2 << std::string("property float intensity\n");
-        f2 << std::string("end_header\n");
+//        // edit: marcel
+//		//const std::string path("pointcloud/");
+//		const std::string path("");
+//		const std::string filename("testcloud2.ply");
+//		printf(("Flushing Pointcloud to %s!\n", (path+filename).c_str()));
+//		std::ofstream f((path+filename).c_str());
+//		int numpts = 0;
+//        for(unsigned int i=0;i<keyframes.size();i++)
+//        {
+//			//if((int)i > cutFirstNKf)				// - edit marcel
+//				numpts += keyframes[i]->flushPC(&f);
+//        }
 
-        std::ifstream f3((ros::package::getPath("lsd_slam_viewer")+"/pc_tmp.ply").c_str());
-        while(!f3.eof()) f2.put(f3.get());
+////		std::ofstream f2((path+filename).c_str());
+////		f2 << std::string("ply\n");
+////		f2 << std::string("format binary_little_endian 1.0\n");
+////		f2 << std::string("element vertex ") << numpts << std::string("\n");
+////		f2 << std::string("property float x\n");
+////		f2 << std::string("property float y\n");
+////		f2 << std::string("property float z\n");
+////		f2 << std::string("property float intensity\n");
+////		f2 << std::string("end_header\n");
 
-        f2.close();
-        f3.close();
+////		f2 << f.rdbuf();
 
-        system(("rm "+ros::package::getPath("lsd_slam_viewer")+"/pc_tmp.ply").c_str());
-        flushPointcloud = false;
-        printf("Done Flushing Pointcloud with %d points!\n", numpts);*/
+////		std::ifstream f3((path+filename).c_str());
 
+////		while(!f3.eof()){
+////			f2.put(f3.get());
+////		  }
+
+////		if(f2.is_open())
+////			f2.close();
+//		if(f.is_open())
+//			f.close();
+////		f3.close();
+
+//        //system(("rm "+path+filename).c_str());
+//        flushPointcloud = false;
+//        printf("Done Flushing Pointcloud with %d points!\n", numpts);
+
+//        // end edit: marcel
+
+		printf("Flushing Pointcloud to %s!\n", "pc_tmp.ply");
+		std::ofstream f("pc_tmp.ply");
+		int numpts = 0;
+		for(unsigned int i=0;i<keyframes.size();i++)
+		{
+			if((int)i > cutFirstNKf)
+				numpts += keyframes[i]->flushPC(&f);
+		}
+		f.flush();
+		f.close();
+		std::ofstream f2("pc.ply");
+		f2 << std::string("ply\n");
+		f2 << std::string("format binary_little_endian 1.0\n");
+		f2 << std::string("element vertex ") << numpts << std::string("\n");
+		f2 << std::string("property float x\n");
+		f2 << std::string("property float y\n");
+		f2 << std::string("property float z\n");
+		f2 << std::string("property float intensity\n");
+		f2 << std::string("end_header\n");
+		std::ifstream f3("pc_tmp.ply");
+		while(!f3.eof()) f2.put(f3.get());
+		f2.close();
+		f3.close();
+		system(std::strcat("rm ", " pc_tmp.ply"));
+		flushPointcloud = false;
+		printf("Done Flushing Pointcloud with %d points!\n", numpts);
     }
 
 

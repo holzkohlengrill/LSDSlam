@@ -30,7 +30,7 @@
 
 #include "opencv2/opencv.hpp"
 
-#include "ros/package.h"
+//#include "ros/package.h"
 
 KeyFrameDisplay::KeyFrameDisplay()
 {
@@ -209,14 +209,12 @@ void KeyFrameDisplay::refreshPC()
 
 
 
-    if(!keepInMemory)
-    {
-        delete[] originalInput;
-        originalInput = 0;
-    }
-
-
-
+																					// marcel !!!!!!!!!!!!!!!!!!!!!!
+	if(!keepInMemory)
+	{
+		delete[] originalInput;
+		originalInput = 0;
+	}
 
     delete[] tmpBuffer;
 }
@@ -319,17 +317,14 @@ int KeyFrameDisplay::flushPC(std::ofstream* f)
             tmpBuffer[num].color[1] = originalInput[x+y*width].color[1];
             tmpBuffer[num].color[0] = originalInput[x+y*width].color[2];
 
-            num++;
+			num++;
         }
-
-
-
 
     for(int i=0;i<num;i++)
     {
         f->write((const char *)tmpBuffer[i].point,3*sizeof(float));
-        float color = tmpBuffer[i].color[0] / 255.0;
-        f->write((const char *)&color,sizeof(float));
+		float color = tmpBuffer[i].color[0] / 255.0;				// edit marcel
+		f->write((const char *)&color,sizeof(float));			// edit marcel
     }
     //	*f << tmpBuffer[i].point[0] << " " << tmpBuffer[i].point[1] << " " << tmpBuffer[i].point[2] << " " << (tmpBuffer[i].color[0] / 255.0) << "\n";
 

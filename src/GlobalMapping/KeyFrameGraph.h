@@ -172,8 +172,6 @@ public:
 	boost::mutex keyframesForRetrackMutex;
 	std::deque<Frame*> keyframesForRetrack;
 
-
-
 private:
 
 	/** Pose graph representation in g2o */
@@ -181,7 +179,6 @@ private:
 	
 	std::vector< Frame*, Eigen::aligned_allocator<Frame*> > newKeyframesBuffer;
 	std::vector< KFConstraintStruct*, Eigen::aligned_allocator<FramePoseStruct*> > newEdgeBuffer;
-
 
 	int nextEdgeId;
 };

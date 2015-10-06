@@ -57,7 +57,7 @@ public:
     virtual void showStereoKeyframe( const cv::Mat& image){};
     virtual void showStereoReferenceFrame( const cv::Mat& image){};
 
-	virtual void publishKeyframeGraph(KeyFrameGraph* graph) {};
+        virtual void publishKeyframeGraph(KeyFrameGraph* graph) {};
 
 	// publishes a keyframe. if that frame already existis, it is overwritten, otherwise it is added.
 	virtual void publishKeyframe(Frame* kf) {};

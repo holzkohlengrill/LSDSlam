@@ -171,7 +171,6 @@ protected :
 
 //	virtual void drawText(int x, int y, const QString & text, const QFont & fnt) {printf(text.toStdString().c_str());};
 
-
 private:
 
     // displays kf-graph

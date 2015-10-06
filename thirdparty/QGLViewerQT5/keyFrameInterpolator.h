@@ -23,15 +23,16 @@
 #ifndef QGLVIEWER_KEY_FRAME_INTERPOLATOR_H
 #define QGLVIEWER_KEY_FRAME_INTERPOLATOR_H
 
+#include <qt5/QtCore/QObject>
+#include <qt5/QtCore/QTime>
+
 #include <QObject>
 #include <QTimer>
 
 #include "quaternion.h"
-// Not actually needed, but some bad compilers (Microsoft VS6) complain.
-#include "frame.h"
 
 // If you compiler complains about incomplete type, uncomment the next line
-// #include "frame.h"
+ #include "frame.h"
 // and comment "class Frame;" 3 lines below
 
 namespace qglviewer {
